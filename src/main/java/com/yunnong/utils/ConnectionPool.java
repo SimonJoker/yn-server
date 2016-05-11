@@ -56,7 +56,6 @@ public class ConnectionPool {
             try {
                 ((Connection)pool.get(i)).close();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             pool.remove(i);
@@ -92,10 +91,8 @@ public class ConnectionPool {
                 coon = java.sql.DriverManager.getConnection(url, username, password);
                 pool.add(coon);
             } catch (ClassNotFoundException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
