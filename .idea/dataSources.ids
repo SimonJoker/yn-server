@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - lecc@192.168.31.242" uuid="6d108cd3-c2e1-43c3-b1d2-665194898291">
+    <database-info product="MySQL" version="5.7.11" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="lecc"/>
+    <table name="guest" schema="" catalog="lecc" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="pass" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="age" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="pro_time" schema="" catalog="lecc" type="TABLE">
+      <column name="tid" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" remarks="6K+l5pe26Ze06KGo5ZSv5LiAaWQ=" autoIncrement="true"/>
+      <column name="pid" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" remarks="6K+l6KGo5omA5bGe5ZKo6K+i5biIaWQ="/>
+      <column name="date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91" remarks="5pS55pe25Yi76KGo5omA5bGe5pel5pyf"/>
+      <column name="ten_am" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA==" remarks="5LiK5Y2IMTDvvJowMOmihOe6puaXtumXtA=="/>
+      <column name="two_pm" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA==" remarks="5LiL5Y2IMu+8mjAw6aKE57qm5pe26Ze0"/>
+      <column name="three_h_pm" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA==" remarks="5LiL5Y2IM++8mjMw6aKE57qm5pe26Ze0"/>
+      <column name="ch_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="6KGo5L+u5pS55pe26Ze06buY6K6k6K6w5b2V5b2T5YmN5pe26Ze0"/>
+      <primary-key name="PRIMARY" columns="tid"/>
+    </table>
+    <table name="sys_consultant" schema="" catalog="lecc" type="TABLE">
+      <column name="pid" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="p_name" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="14" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sex" sqlType="VARCHAR" precision="2" scale="0" nullable="true" jdbcType="12"/>
+      <column name="image" sqlType="VARCHAR" precision="150" scale="0" nullable="true" jdbcType="12"/>
+      <column name="weixin" sqlType="VARCHAR" precision="150" scale="0" nullable="true" jdbcType="12"/>
+      <column name="business_skills" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="business_scope" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="status" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="pid"/>
+    </table>
+    <table name="sys_order" schema="" catalog="lecc" type="TABLE">
+      <column name="oid" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" remarks="54K55Y2V5Y+3"/>
+      <column name="pid" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" remarks="5ZKo6K+i5biIaWQ="/>
+      <column name="uid" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" remarks="55So5oi3aWQ="/>
+      <column name="ch_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" remarks="6K6i5Y2V55Sf5oiQ5pe26Ze0"/>
+      <column name="date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn" remarks="55So5oi357qm5a6a5ZKo6K+i5pel5pyf"/>
+      <column name="status" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5" def="MA==" remarks="6K6i5Y2V54q25oCB"/>
+      <column name="rid" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5" remarks="6K+E6K666KGoaWQ="/>
+      <column name="remark" sqlType="VARCHAR" precision="150" scale="0" nullable="true" jdbcType="12" remarks="5aSH5rOo"/>
+      <primary-key name="PRIMARY" columns="oid"/>
+    </table>
+    <table name="sys_user" schema="" catalog="lecc" type="TABLE">
+      <column name="uid" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="realname" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+      <column name="weixin" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12"/>
+      <column name="qr_url" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="nickname" sqlType="VARCHAR" precision="12" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sex" sqlType="VARCHAR" precision="2" scale="0" nullable="true" jdbcType="12"/>
+      <column name="phone" sqlType="VARCHAR" precision="14" scale="0" nullable="true" jdbcType="12"/>
+      <column name="company" sqlType="VARCHAR" precision="40" scale="0" nullable="true" jdbcType="12"/>
+      <column name="position" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="reg_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="role" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+      <column name="unionid" sqlType="VARCHAR" precision="35" scale="0" nullable="false" jdbcType="12"/>
+      <column name="province" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="country" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="headimgurl" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="city" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="uid"/>
+    </table>
+    <table name="test" schema="" catalog="lecc" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="name" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+  </data-source>
+</component>

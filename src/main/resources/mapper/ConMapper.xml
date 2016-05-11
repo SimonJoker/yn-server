@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yunnong.mapper.ConMapper">
+       <!-- 定义数据库字段与实体对象的映射关系 -->
+       <resultMap type="com.yunnong.domain.Consultant" id="resultCon">
+           <id property="pid" column="pid"/>
+           <result property="p_name" column="p_name"/>
+           <result property="phone" column="phone"/>
+           <result property="sex" column="sex"/>
+           <result property="image" column="image"/>
+           <result property="weixin" column="weixin"/>
+           <result property="business_skills" column="business_skills"/>
+           <result property="business_scope" column="business_scope"/>
+           <result property="description" column="description"/>
+           <result property="date" column="date"/>
+           <result property="status" column="status"/>
+       </resultMap>
+
+        <resultMap type="com.yunnong.domain.ConsultantTem" id="resultConTem">
+            <id property="pid" column="pid"/>
+            <result property="p_name" column="p_name"/>
+            <result property="image" column="image"/>
+            <result property="description" column="description"/>
+        </resultMap>
+
+    <resultMap type="com.yunnong.domain.ConsultantOp" id="resultConOp">
+        <id property="pid" column="pid"/>
+        <result property="p_name" column="p_name"/>
+        <result property="phone" column="phone"/>
+        <result property="sex" column="sex"/>
+        <result property="date" column="date"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+       <!-- 定义参数模型 -->
+       <parameterMap type="com.yunnong.domain.Consultant" id="paramCon">
+           <parameter property="pid" />
+           <parameter property="p_name" />
+           <parameter property="phone"/>
+           <parameter property="sex" />
+           <parameter property="image" />
+           <parameter property="weixin"/>
+           <parameter property="business_skills"/>
+           <parameter property="business_scope"/>
+           <parameter property="description"/>
+           <parameter property="date"/>
+           <parameter property="status"/>
+       </parameterMap>
+
+
+       <!-- 定义要操纵的SQL语句 -->
+       <insert id="create" useGeneratedKeys="true" keyProperty="pid" parameterType="com.yunnong.domain.Consultant" >
+              INSERT INTO sys_consultant(pid,p_name,phone,sex,image,weixin,business_skills
+              ,business_scope,description,status)
+              VALUES(#{pid},#{p_name},#{phone},#{sex},#{image},#{weixin},#{business_skills}
+              ,#{business_scope},#{description},#{status})
+       </insert>
+
+       <delete id="delete" parameterType="Integer" >
+              DELETE FROM guest
+              WHERE id=#{value}
+       </delete>
+
+       <update id="modify" parameterType="com.yunnong.domain.Consultant" >
+              UPDATE sys_consultant
+              <set>
+                  <if test="p_name != null">p_name=#{p_name},</if>
+                  <if test="phone != null">phone=#{phone},</if>
+                  <if test="sex != null">sex=#{sex},</if>
+                  <if test="image != null" >image=#{image},</if>
+                  <if test="weixin != null" >weixin=#{weixin},</if>
+                  <if test="business_skills != null" >business_skills=#{business_skills},</if>
+                  <if test="business_scope != null" >business_scope=#{business_scope},</if>
+                  <if test="description != null" >description=#{description},</if>
+                  <if test="date != null" >date=#{date},</if>
+                  <if test="status != null" >status=#{status}</if>
+              </set>
+              WHERE pid=#{pid}
+       </update>
+
+       <select id="findById" parameterType="Long" resultMap="resultCon">
+              SELECT * FROM sys_consultant
+              WHERE pid=#{pid}
+       </select>
+
+       <select id="findConTimeById" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+           SELECT c.pid AS "pid", c.p_name AS "p_name", c.phone AS "phone"
+           , c.sex AS "sex", c.image AS "image", c.weixin AS "weixin"
+           , c.business_skills AS "business_skills", c.business_scope AS "business_scope"
+           , t.date AS "date", t.ten_am AS "ten_am", t.two_pm AS "two_pm"
+           , t.three_h_pm AS "three_h_pm"
+           FROM sys_consultant c
+           ,pro_time t
+           WHERE c.pid = t.pid AND t.pid=#{pid} AND t.date=#{date}
+       </select>
+
+    <select id="findConTimeAll" parameterType="java.util.Map" resultType="java.util.HashMap">
+        SELECT c.pid AS "pid", c.p_name AS "p_name"
+        , t.date AS "date", t.ten_am AS "ten_am", t.two_pm AS "two_pm"
+        , t.three_h_pm AS "three_h_pm"
+        FROM sys_consultant c
+        ,pro_time t
+        WHERE c.pid = t.pid AND t.pid=#{pid} AND t.date=#{date}
+    </select>
+
+
+       <select id="findNameImgDes" resultMap="resultConTem">
+              SELECT pid, p_name, image, description FROM sys_consultant
+       </select>
+
+        <select id="findConAllOp" resultMap="resultConOp">
+            SELECT pid, p_name, phone, sex, status, date FROM sys_consultant
+        </select>
+
+        <select id="findAll" resultMap="resultCon">
+            SELECT * FROM sys_consultant
+        </select>
+
+       <select id="countAll" resultType="Integer">
+              SELECT count(*) FROM sys_consultant
+       </select>
+</mapper>

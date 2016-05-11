@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+		xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!--<constructor-arg name="rootPath" value="/usr/local/tomcat/webapps/img"/>-->
+	<!--<constructor-arg name="rootPath" value="D:\\program tools\\apache-tomcat\\webapps\\img"/>-->
+
+  	<bean id="filePathConf" class="com.yunnong.config.FilePathConf">
+		<constructor-arg name="imageUrl" value="http://www.xjoker.cn/images"/>
+		<constructor-arg name="imagePath" value="/usr/local/tomcat/webapps/images"/>
+		<constructor-arg name="conlImage" value="/consultant"/>
+		<constructor-arg name="userImage" value="/user"/>
+  	</bean>
+
+</beans>
+  

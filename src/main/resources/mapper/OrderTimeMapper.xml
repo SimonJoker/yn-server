@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yunnong.mapper.OrderTimeMapper">
+       <!-- 定义数据库字段与实体对象的映射关系 -->
+       <resultMap type="com.yunnong.domain.OrderTime" id="resultOrTime">
+           <id property="tid" column="tid"/>
+           <result property="pid" column="pid"/>
+           <result property="date" column="date"/>
+           <result property="ten_am" column="ten_am"/>
+           <result property="two_pm" column="two_pm"/>
+           <result property="three_h_pm" column="three_h_pm"/>
+           <result property="ch_date" column="ch_date"/>
+       </resultMap>
+
+    <resultMap type="com.yunnong.domain.OrderTimeTem" id="resultOrTimeTem">
+        <result property="pid" column="pid"/>
+        <result property="date" column="date"/>
+        <result property="ten_am" column="ten_am"/>
+        <result property="two_pm" column="two_pm"/>
+        <result property="three_h_pm" column="three_h_pm"/>
+    </resultMap>
+
+       <!-- 定义参数模型 -->
+       <parameterMap type="com.yunnong.domain.OrderTime" id="paramOrTime">
+           <parameter property="tid" />
+           <parameter property="pid" />
+           <parameter property="date" />
+           <parameter property="ten_am" />
+           <parameter property="two_pm" />
+           <parameter property="three_h_pm" />
+           <parameter property="ch_date" />
+       </parameterMap>
+
+
+       <!-- 定义要操纵的SQL语句 -->
+       <insert id="create" useGeneratedKeys="true" keyProperty="tid" parameterType="com.yunnong.domain.OrderTime" >
+              INSERT INTO pro_time(tid,pid,date,ten_am,two_pm,three_h_pm)
+              VALUES(#{tid},#{pid},#{date},#{ten_am},#{two_pm},#{three_h_pm})
+       </insert>
+
+       <select id="findTidByPidDate" parameterType="com.yunnong.domain.OrderTime" resultType="Long" >
+              SELECT tid FROM pro_time
+              WHERE pid=#{pid} AND date=#{date}
+       </select>
+
+        <select id="findByPidDate" parameterType="com.yunnong.domain.OrderTimeTem" resultMap="resultOrTimeTem">
+            SELECT pid, date, ten_am, two_pm, three_h_pm FROM pro_time
+            WHERE pid=#{pid} AND date=#{date}
+        </select>
+
+    <update id="modify" parameterType="com.yunnong.domain.OrderTime" >
+        UPDATE pro_time
+        <set>
+            <if test="tid != null">tid=#{tid},</if>
+            <if test="pid != null">pid=#{pid},</if>
+            <if test="date != null">date=#{date},</if>
+            <if test="ten_am != null" >ten_am=#{ten_am},</if>
+            <if test="two_pm != null" >two_pm=#{two_pm},</if>
+            <if test="three_h_pm != null" >three_h_pm=#{three_h_pm}</if>
+        </set>
+        WHERE tid=#{tid}
+    </update>
+
+</mapper>

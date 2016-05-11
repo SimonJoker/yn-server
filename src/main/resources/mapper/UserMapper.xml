@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yunnong.mapper.UserMapper">
+       <!-- 定义数据库字段与实体对象的映射关系 -->
+       <resultMap type="com.yunnong.domain.User" id="resultUser">
+              <id property="uid" column="uid"/>
+              <result property="realname" column="realname"/>
+              <result property="nickname" column="nickname"/>
+              <result property="sex" column="sex"/>
+              <result property="phone" column="phone"/>
+              <result property="company" column="company"/>
+              <result property="position" column="position"/>
+              <result property="reg_date" column="reg_date"/>
+              <result property="role" column="role"/>
+              <result property="unionid" column="unionid"/>
+              <result property="province" column="province"/>
+              <result property="province" column="province"/>
+              <result property="headimgurl" column="headimgurl"/>
+              <result property="city" column="city"/>
+       </resultMap>
+       <!-- 定义参数模型 -->
+       <parameterMap type="com.yunnong.domain.User" id="paramUser">
+              <parameter property="uid" />
+              <parameter property="realname" />
+              <parameter property="nickname" />
+              <parameter property="sex" />
+              <parameter property="phone" />
+              <parameter property="company" />
+              <parameter property="position" />
+              <parameter property="reg_date" />
+              <parameter property="role"/>
+              <parameter property="unionid" />
+              <parameter property="province" />
+              <parameter property="province" />
+              <parameter property="headimgurl" />
+              <parameter property="city" />
+       </parameterMap>
+
+
+       <!-- 定义要操纵的SQL语句 -->
+      <!-- <insert id="create" useGeneratedKeys="true" keyProperty="id" parameterType="com.springapp.mvc.entity.Guest" >
+              INSERT INTO guest(name,pass,age)
+              VALUES(#{name},#{pass},#{age})
+       </insert>
+
+       <delete id="delete" parameterType="Integer" >
+              DELETE FROM guest
+              WHERE id=#{value}
+       </delete>
+
+       <update id="modify" parameterType="Integer" >
+              UPDATE guest
+              <set>
+                     <if test="name != null">name=#{name},</if>
+                     <if test="pass != null">pass=#{pass},</if>
+                     <if test="age != null">age=#{age},</if>
+              </set>
+              WHERE id=#{id}
+       </update>-->
+
+
+       <select id="queryUser" parameterType="Long" resultMap="resultUser">
+              SELECT * FROM sys_user
+              WHERE uid=#{uid}
+       </select>
+
+
+       <select id="queryAllUsers" resultType="list" resultMap="resultUser">
+              SELECT * FROM sys_user
+       </select>
+
+
+       <select id="count" resultType="Integer">
+              SELECT count(*) FROM sys_user
+       </select>
+</mapper>

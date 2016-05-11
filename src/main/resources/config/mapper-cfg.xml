@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD  Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+       <!--<settings>
+              &lt;!&ndash;设置mapper 中 字段可以为空，满足查询返回任意字段的需求&ndash;&gt;
+              <setting name="callSettersOnNulls" value="true"/>
+       </settings>-->
+       <typeAliases>
+              <typeAlias alias="Oper" type="com.yunnong.mapper.ConMapper" />
+              <typeAlias alias="User" type="com.yunnong.mapper.UserMapper" />
+              <typeAlias alias="Order" type="com.yunnong.mapper.OrderMapper" />
+              <typeAlias alias="OrderTime" type="com.yunnong.mapper.OrderTimeMapper" />
+       </typeAliases>
+
+       <mappers>
+              <mapper resource="mapper/ConMapper.xml" />
+              <mapper resource="mapper/UserMapper.xml" />
+              <mapper resource="mapper/OrderMapper.xml" />
+              <mapper resource="mapper/OrderTimeMapper.xml" />
+       </mappers>
+</configuration>

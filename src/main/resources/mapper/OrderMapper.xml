@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yunnong.mapper.OrderMapper">
+       <!-- 定义数据库字段与实体对象的映射关系 -->
+       <resultMap type="com.yunnong.domain.Order" id="resultOrder">
+           <id property="oid" column="oid"/>
+           <result property="pid" column="pid"/>
+           <result property="uid" column="uid"/>
+           <result property="ch_date" column="ch_date"/>
+           <result property="date" column="date"/>
+           <result property="status" column="status"/>
+           <result property="rid" column="rid"/>
+           <result property="remark" column="remark"/>
+       </resultMap>
+       <!-- 定义参数模型 -->
+       <parameterMap type="com.yunnong.domain.Order" id="paramOrder">
+           <parameter property="oid" />
+           <parameter property="pid" />
+           <parameter property="uid" />
+           <parameter property="ch_date" />
+           <parameter property="date" />
+           <parameter property="status" />
+           <parameter property="rid" />
+           <parameter property="remark" />
+       </parameterMap>
+
+
+       <!-- 定义要操纵的SQL语句 -->
+       <insert id="create" useGeneratedKeys="true" keyProperty="oid" parameterType="com.yunnong.domain.Order" >
+              INSERT INTO sys_order(oid,pid,uid,date,status)
+              VALUES(#{oid},#{pid},#{uid},#{date},#{status})
+       </insert>
+
+       <delete id="delete" parameterType="long" >
+              DELETE FROM sys_order
+              WHERE oid=#{oid}
+       </delete>
+
+    <select id="findOrderByStatus" parameterType="Integer" resultType="java.util.HashMap">
+        SELECT c.p_name AS "p_name", c.phone AS "phone"
+           , c.image AS "image"
+           , o.oid AS "oid", o.date AS "date", o.status AS "status"
+           FROM sys_consultant c
+           ,sys_order o
+           WHERE c.pid = o.pid AND o.status=#{status}
+    </select>
+
+    <select id="findOrderCancle" resultType="java.util.HashMap">
+        SELECT c.p_name AS "p_name", c.phone AS "phone"
+        , c.image AS "image"
+        , o.oid AS "oid", o.date AS "date", o.status AS "status"
+        FROM sys_consultant c
+        ,sys_order o
+        WHERE c.pid = o.pid AND (o.status=2 OR o.status=3)
+    </select>
+
+    <select id="findOrderOverTime" parameterType="java.lang.String" resultType="java.util.HashMap">
+        SELECT c.p_name AS "p_name", c.phone AS "phone"
+        , c.image AS "image"
+        , o.oid AS "oid", o.date AS "date", o.status AS "status"
+        FROM sys_consultant c
+            ,sys_order o
+        WHERE c.pid=o.pid AND o.status=0 AND o.date &lt; #{date}
+    </select>
+
+    <select id="findOrderDetail" parameterType="java.lang.Long" resultType="java.util.HashMap">
+        SELECT c.pid AS "pid", c.p_name AS "p_name", c.phone AS "phone", c.image AS "image"
+        , o.oid AS "oid", o.date AS "date", o.status AS "status", o.remark AS "remark"
+        ,u.uid AS "uid", u.realname AS "realname", u.weixin AS "weixin",u.qr_url AS "qr_url"
+        ,u.nickname AS "nickname", u.phone AS "phone", u.company AS "company"
+        ,u.position AS "position", u.headimgurl AS "headimageurl"
+        FROM sys_consultant c
+        ,sys_order o ,sys_user u
+        WHERE c.pid=o.pid AND o.uid=u.uid AND o.oid=#{oid}
+    </select>
+</mapper>
