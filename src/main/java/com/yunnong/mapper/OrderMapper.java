@@ -24,4 +24,6 @@ public interface OrderMapper {
     List<HashMap<String, Object>> findOrderCancle();
 
     HashMap<String, Object> findOrderDetail(Long oid);
+
+    void updateOrStatus(List<HashMap<String, Object>> parm);
 }

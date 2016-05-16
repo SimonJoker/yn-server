@@ -14,10 +14,7 @@ import net.sf.json.JSONObject;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Created by joker on 2016/4/27.
@@ -193,5 +190,55 @@ public class OperMybatisLogic {
         return callback.toString();
     }
 
+    /**
+     * @param body
+     * @return 批量更新‘咨询师’状态值
+     */
+    public String updateConStatus(JSONObject body){
+        JSONObject callback = new JSONObject();
+        callback.put("api", "ch_constatus");
+        callback.put("result", 602);
+        try {
+            JSONArray re_body = body.getJSONArray("body");
+            List<HashMap<String, Object>> re_list = new ArrayList<>();
+            re_body.forEach(j ->{
+                JSONObject rj = JSONObject.fromObject(j);
+                HashMap<String, Object> item = new HashMap<String, Object>();
+                item.put("pid", rj.get("pid"));
+                item.put("status", rj.get("status"));
+                re_list.add(item);
+            });
+            conMapper.updateOrStatus(re_list);
+            callback.replace("result", 200);
+        } catch (Exception e) {
+            LogUtils.LogError(logger, "update consultant' status failed", e);
+        }
+        return callback.toString();
+    }
 
+    /**
+     * @param body
+     * @return 批量更新‘订单’状态值
+     */
+    public String updateOrdersStatus(JSONObject body){
+        JSONObject callback = new JSONObject();
+        callback.put("api", "ch_orstatus");
+        callback.put("result", 602);
+        try {
+            JSONArray re_body = body.getJSONArray("body");
+            List<HashMap<String, Object>> re_list = new ArrayList<>();
+            re_body.forEach(j ->{
+                JSONObject rj = JSONObject.fromObject(j);
+                HashMap<String, Object> item = new HashMap<String, Object>();
+                item.put("oid", rj.get("oid"));
+                item.put("status", rj.get("status"));
+                re_list.add(item);
+            });
+            orderMapper.updateOrStatus(re_list);
+            callback.replace("result", 200);
+        } catch (Exception e) {
+            LogUtils.LogError(logger, "update orders' status failed", e);
+        }
+        return callback.toString();
+    }
 }

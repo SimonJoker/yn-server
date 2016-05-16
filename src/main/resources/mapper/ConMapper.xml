@@ -120,4 +120,15 @@
        <select id="countAll" resultType="Integer">
               SELECT count(*) FROM sys_consultant
        </select>
+
+
+    <update id="updateOrStatus" parameterType="java.util.List" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            UPDATE sys_consultant
+            <set>
+                <if test="item.status != null">status=${item.status}</if>
+            </set>
+            WHERE pid=${item.pid}
+        </foreach>
+    </update>
 </mapper>

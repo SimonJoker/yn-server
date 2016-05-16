@@ -36,4 +36,6 @@ public interface ConMapper {
 
     Integer countAll();
 
+    void updateOrStatus(List<HashMap<String, Object>> parm);
+
 }

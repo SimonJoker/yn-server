@@ -74,4 +74,14 @@
         ,sys_order o ,sys_user u
         WHERE c.pid=o.pid AND o.uid=u.uid AND o.oid=#{oid}
     </select>
+
+    <update id="updateOrStatus" parameterType="java.util.List" >
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            UPDATE sys_order
+            <set>
+                <if test="item.status != null">status=${item.status}</if>
+            </set>
+            WHERE oid=${item.oid}
+        </foreach>
+    </update>
 </mapper>

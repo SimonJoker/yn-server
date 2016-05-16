@@ -105,4 +105,20 @@ public class OperationsController {
                 operMybatisLogic.orderDetail(oid);
         return callback;
     }
+
+    @RequestMapping(value = "ch_constatus", method = RequestMethod.POST)
+    @ResponseBody
+    public String conChStatus(@RequestBody JSONObject body, HttpSession session) {
+        String callback =
+                operMybatisLogic.updateConStatus(body);
+        return callback;
+    }
+
+    @RequestMapping(value = "ch_orstatus", method = RequestMethod.POST)
+    @ResponseBody
+    public String orderChStatus(@RequestBody JSONObject body, HttpSession session) {
+        String callback =
+                operMybatisLogic.updateOrdersStatus(body);
+        return callback;
+    }
 }
